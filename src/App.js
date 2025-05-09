@@ -24,7 +24,7 @@ function App() {
         }
 
         const response = await axios.get(url);
-        setArticles(response.data.results || []);
+        setArticles(response.data.results || []);  
       } catch (error) {
         console.error("Error fetching news", error);
       }
@@ -39,23 +39,25 @@ function App() {
 
   return (
     <div className="App">
-      <div className="search-bar-container">
+      <header>
         <h1>📰 React News App</h1>
-        <input
-          type="text"
-          placeholder="Search news..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <button onClick={handleSearch}>Search</button>
-        <select onChange={(e) => setCategory(e.target.value)}>
-          <option value="">All</option>
-          <option value="technology">Technology</option>
-          <option value="sports">Sports</option>
-          <option value="business">Business</option>
-          <option value="entertainment">Entertainment</option>
-        </select>
-      </div>
+        <div className="search-bar-container">
+          <input
+            type="text"
+            placeholder="Search news..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <select onChange={(e) => setCategory(e.target.value)}>
+            <option value="">All</option>
+            <option value="technology">Technology</option>
+            <option value="sports">Sports</option>
+            <option value="business">Business</option>
+            <option value="entertainment">Entertainment</option>
+          </select>
+          <button onClick={handleSearch}>Search</button>
+        </div>
+      </header>
 
       <div className="articles-container">
         {articles.length === 0 && <p>No articles found.</p>}

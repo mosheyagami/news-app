@@ -1,93 +1,106 @@
-/* Base Styles */
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  background-color: #f2f2f7;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #1c1c1e;
 }
 
 h1 {
   font-size: 2rem;
   text-align: center;
-  color: #333;
-  margin: 20px 0;
+  font-weight: 600;
+  padding: 20px 0;
+  color: #111;
 }
 
-/* Search Bar */
 .search-bar-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
-  padding: 0 20px;
-  margin-bottom: 20px;
-}
-
-input[type="text"],
-button,
-select {
-  font-size: 16px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  box-sizing: border-box;
+  margin: 0 auto 30px auto;
+  padding: 0 16px;
+  max-width: 800px;
 }
 
 input[type="text"] {
-  width: 350px;
-  max-width: 100%;
+  padding: 12px;
+  flex: 1;
+  min-width: 50px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
 }
 
 button {
-  background-color: #007bff;
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: #007aff;
   color: white;
   border: none;
+  border-radius: 12px;
   cursor: pointer;
+  transition: background 0.2s ease;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #005fcc;
 }
 
 select {
-  min-width: 150px;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  background-color: #fff;
 }
 
-/* Articles */
 .articles-container {
-  padding: 20px;
+  padding: 0 16px 60px;
+  max-width: 900px;
+  margin: auto;
 }
 
 .article {
   background-color: white;
-  margin-bottom: 20px;
+  border-radius: 20px;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
+  opacity: 0; 
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.article:hover {
+  transform: translateY(-4px);
 }
 
 .article img {
   width: 100%;
-  max-width: 600px;
-  border-radius: 8px;
-  margin-bottom: 10px;
+  border-radius: 12px;
+  margin-bottom: 16px;
 }
 
 .article h3 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 600;
   margin-bottom: 10px;
-  color: #333;
 }
 
 .article p {
   font-size: 1rem;
+  color: #444;
   margin-bottom: 10px;
-  color: #555;
 }
 
 .article a {
-  color: #007bff;
+  color: #007aff;
+  font-weight: 500;
   text-decoration: none;
 }
 
@@ -95,46 +108,26 @@ select {
   text-decoration: underline;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .search-bar-container {
     flex-direction: column;
-    align-items: stretch;
   }
 
   input[type="text"],
   button,
   select {
     width: 100%;
-  }
-
-  .articles-container {
-    padding: 15px;
-  }
-
-  .article {
-    padding: 15px;
-  }
-
-  .article h3 {
-    font-size: 1.3rem;
-  }
-
-  .article p {
-    font-size: 0.95rem;
+    margin-top: 10px;
   }
 }
 
-@media (max-width: 480px) {
-  h1 {
-    font-size: 1.6rem;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-
-  .article h3 {
-    font-size: 1.2rem;
-  }
-
-  .article p {
-    font-size: 0.9rem;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
