@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './App.css'; 
 
-const API_KEY = "pub_85824b6043b752b175d245a5fc8f6baf592d2"; 
+const API_KEY = "pub_85824418b4d5a4cf656803573c41b1b82afb7"; 
 
 function App() {
   const [articles, setArticles] = useState([]);
@@ -24,7 +24,7 @@ function App() {
         }
 
         const response = await axios.get(url);
-        setArticles(response.data.results || []);  
+        setArticles(response.data.results || []); 
       } catch (error) {
         console.error("Error fetching news", error);
       }
