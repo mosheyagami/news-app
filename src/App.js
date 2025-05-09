@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./App.css"; 
+import './App.css'; 
+
 const API_KEY = "pub_85824b6043b752b175d245a5fc8f6baf592d2"; 
+
 function App() {
   const [articles, setArticles] = useState([]);
   const [query, setQuery] = useState("");
   const [searchTerm, setSearchTerm] = useState("latest");
   const [category, setCategory] = useState("");
-  const [isLoading, setIsLoading] = useState(false); 
-  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchNews = async () => {
-      setIsLoading(true); 
-      setError(""); 
       try {
         let url = `https://newsdata.io/api/1/news?apikey=${API_KEY}&country=us`;
 
@@ -29,9 +27,6 @@ function App() {
         setArticles(response.data.results || []);
       } catch (error) {
         console.error("Error fetching news", error);
-        setError("Something went wrong. Please try again later.");
-      } finally {
-        setIsLoading(false); 
       }
     };
 
@@ -39,20 +34,13 @@ function App() {
   }, [searchTerm, category]);
 
   const handleSearch = () => {
-    setSearchTerm(query);
-  };
-
-  const truncateDescription = (description, maxLength = 150) => {
-    if (description && description.length > maxLength) {
-      return description.slice(0, maxLength) + "...";
-    }
-    return description || ""; 
+    setSearchTerm(query); 
   };
 
   return (
-    <div className="app-container">
-      <div className="search-container">
-        <h2>📰 React News App</h2>
+    <div className="App">
+      <div className="search-bar-container">
+        <h1>📰 React News App</h1>
         <input
           type="text"
           placeholder="Search news..."
@@ -69,24 +57,19 @@ function App() {
         </select>
       </div>
 
-      {isLoading && <div className="loading">Loading...</div>}
-
-
-      {error && <div className="error">{error}</div>}
-
-      <div>
-        {articles.length === 0 && !isLoading && !error && (
-          <p>No articles found. Try a different search term or category.</p>
-        )}
-
+      <div className="articles-container">
+        {articles.length === 0 && <p>No articles found.</p>}
         {articles.map((article, index) => (
-          <div key={index} className="article-card">
+          <div key={index} className="article">
             <h3>{article.title}</h3>
             {article.image_url && (
-              <img src={article.image_url} alt="article" />
+              <img
+                src={article.image_url}
+                alt={article.title}
+              />
             )}
-            <p>{truncateDescription(article.description)}</p>
-            <a href={article.link} className="read-more" target="_blank" rel="noreferrer">
+            <p>{article.description}</p>
+            <a href={article.link} target="_blank" rel="noopener noreferrer">
               Read More
             </a>
           </div>
