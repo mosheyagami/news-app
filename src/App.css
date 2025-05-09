@@ -1,4 +1,4 @@
-
+/* Base Styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -10,46 +10,57 @@ h1 {
   font-size: 2rem;
   text-align: center;
   color: #333;
+  margin: 20px 0;
 }
 
+/* Search Bar */
 .search-bar-container {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
+  padding: 0 20px;
   margin-bottom: 20px;
 }
 
-input[type="text"] {
-  padding: 10px;
-  width: 300px;
+input[type="text"],
+button,
+select {
   font-size: 16px;
-  border: 1px solid #ccc;
   border-radius: 4px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+input[type="text"] {
+  width: 350px;
+  max-width: 100%;
 }
 
 button {
-  padding: 10px 20px;
-  font-size: 16px;
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
 }
 
-select {
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+button:hover {
+  background-color: #0056b3;
 }
 
+select {
+  min-width: 150px;
+}
+
+/* Articles */
 .articles-container {
   padding: 20px;
 }
 
 .article {
-  background: white;
+  background-color: white;
   margin-bottom: 20px;
   padding: 20px;
   border-radius: 8px;
@@ -60,16 +71,19 @@ select {
   width: 100%;
   max-width: 600px;
   border-radius: 8px;
+  margin-bottom: 10px;
 }
 
 .article h3 {
   font-size: 1.5rem;
   margin-bottom: 10px;
+  color: #333;
 }
 
 .article p {
   font-size: 1rem;
   margin-bottom: 10px;
+  color: #555;
 }
 
 .article a {
@@ -77,29 +91,25 @@ select {
   text-decoration: none;
 }
 
+.article a:hover {
+  text-decoration: underline;
+}
 
+/* Responsive Design */
 @media (max-width: 768px) {
   .search-bar-container {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
   }
 
-  input[type="text"] {
-    width: 80%;
-  }
-
-  button {
-    width: 80%;
-    margin-top: 10px;
-  }
-
+  input[type="text"],
+  button,
   select {
-    width: 80%;
-    margin-top: 10px;
+    width: 100%;
   }
 
   .articles-container {
-    padding: 10px;
+    padding: 15px;
   }
 
   .article {
@@ -111,21 +121,13 @@ select {
   }
 
   .article p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 }
 
 @media (max-width: 480px) {
-  input[type="text"] {
-    width: 90%;
-  }
-
-  button {
-    width: 90%;
-  }
-
-  select {
-    width: 90%;
+  h1 {
+    font-size: 1.6rem;
   }
 
   .article h3 {
@@ -133,6 +135,6 @@ select {
   }
 
   .article p {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
 }
