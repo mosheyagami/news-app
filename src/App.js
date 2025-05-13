@@ -9,6 +9,10 @@ function App() {
   const [query, setQuery] = useState("");
   const [searchTerm, setSearchTerm] = useState("latest");
   const [category, setCategory] = useState("");
+  const [itemsPerPage, setItemsPerPage] = useState(10); // default 10
+  const [date, setDate] = useState(""); // format: YYYY-MM-DD
+
+
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -39,43 +43,44 @@ function App() {
 
   return (
     <div className="App">
-      <header>
-        <h1>📰 React News App</h1>
-        <div className="search-bar-container">
-          <input
-            type="text"
-            placeholder="Search news..."
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <select onChange={(e) => setCategory(e.target.value)}>
-            <option value="">All</option>
-            <option value="technology">Technology</option>
-            <option value="sports">Sports</option>
-            <option value="business">Business</option>
-            <option value="entertainment">Entertainment</option>
-          </select>
-          <button onClick={handleSearch}>Search</button>
-        </div>
-      </header>
+      <header className="header" >
+  <div className="logo">📰 React News App</div>
+  
+  <div className="search-bar-wrapper">
+    <input
+      type="text"
+      placeholder="Search news..."
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
+    />
+  </div>
+
+  <div className="controls">
+    <select onChange={(e) => setCategory(e.target.value)}>
+      <option value="">All</option>
+      <option value="technology">Technology</option>
+      <option value="sports">Sports</option>
+      <option value="business">Business</option>
+      <option value="entertainment">Entertainment</option>
+    </select>
+    <button onClick={handleSearch}>Search</button>
+  </div>
+</header>
+
+      
+
 
       <div className="articles-container">
         {articles.length === 0 && <p>No articles found.</p>}
-        {articles.map((article, index) => (
-          <div key={index} className="article">
-            <h3>{article.title}</h3>
-            {article.image_url && (
-              <img
-                src={article.image_url}
-                alt={article.title}
-              />
-            )}
-            <p>{article.description}</p>
-            <a href={article.link} target="_blank" rel="noopener noreferrer">
-              Read More
-            </a>
-          </div>
-        ))}
+        {articles.slice(0, itemsPerPage).map((article, index) => (
+  <div key={index} className="article">
+    <h3>{article.title}</h3>
+    {article.image_url && <img src={article.image_url} alt={article.title} />}
+    <p>{article.description}</p>
+    <a href={article.link} target="_blank" rel="noopener noreferrer">Read More</a>
+  </div>
+))}
+
       </div>
     </div>
   );
